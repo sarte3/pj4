@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/spring.css">
+</head>
+<body>
+<h1>index.html</h1>
+<hr>
+{% if qlist %}
+<ul>
+    {% for q in qlist %}
+        <!--127.0.0.1/polls/2 ==> /polls/{{q.id}} -->
+        <li><a href="/polls/{{q.id}}/">{{q.id}} - {{q.question_text}}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>자료없음</p>
+{% endif %}
+</body>
+</html>

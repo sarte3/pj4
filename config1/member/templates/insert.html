@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="/static/spring.css">
+</head>
+<body>
+    <h1>insert.html</h1> <!--http://127.0.0.1:8000/member/insert-->
+    <h2>{{err}}</h2>
+    <form method="post" action=".">
+    {%csrf_token%}
+    <!--반드시 폼태그 내에 작성, 비정상적 접근을 막기위해 암호화된 키를 만듦, 장고에서는 필수-->
+        <p>사용자 이름 <input type="text" name="username" id="username"></p>
+        <p>비밀번호 <input type="password" name="pw" id="pw"></p>
+        <p>비밀번호 확인 <input type="password" name="pw1" id="pw1"></p>
+        <p>이메일 <input type="text" name="email" id="email"></p>
+        <p>휴대폰 번호 <input type="text" name="hp" id="hp"></p>
+        <p><input type="submit" value="등록"></p>
+    </form>
+</body>
+</html>

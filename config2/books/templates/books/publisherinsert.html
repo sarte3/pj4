@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>publisherinsert.html</h1>
+    <!-- {{form.as_p}}     -->
+    <!-- {{form.as_ul}} -->
+    <hr>
+    <form id="frm1" method="POST">
+        {% csrf_token %}
+        <table border="1">
+            {{form.as_table}} <!-- form.as_p, form.as_ul, form.as_table-->
+            <tr>
+                <td colspan="2"><input type="submit" value="등록"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

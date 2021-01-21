@@ -1,0 +1,153 @@
+1. pip install django
+2. 프로젝트 생성
+django-admin startproject 프로젝트명
+django-admin startproject config1
+3. 앱생성-MTV 단위로 제공
+cd config1
+python manage.py startapp 앱이름
+python manage.py startapp board
+장고에서의 MTV(자바의 MVC)
+Model(models.py) Template(templates폴더) View(views.py)
+Model            View                    Controller
+--board/templates폴더 생성
+4. 앱 등록(settings.py)
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'board',
+]
+5. models.py 작성
+6. 테이블 생성코드 작성
+python manage.py makemigrations
+7. 테이블 생성
+python manage.py migrate
+#테이블 생성 확인
+윈도우+r -cmd - d: - cd sqlite - sqlite3 d:\study\pj6\config1\db.sqlite3
+.tables                   (select * from tab;)
+.schema board_board       (desc board_board;)
+8.테이블 수정
+9.테이블 수정 코드 작성
+python manage.py makemigrations
+10.테이블 수정
+python manage.py migrate
+11.테이블 삭제
+9.테이블 코드 작성
+python manage.py makemigrations
+10.테이블 실행
+python manage.py migrate
+-----------------------------------------------
+3. 앱 생성 (MTV)
+(venv) D:\study\pj6\config1>python manage.py startapp polls
+polls\templates 폴더 생성
+4. 앱등록(settiongs.py)
+5. models.py
+6. 테이블 생성/수정/삭제 코드 생성
+python manage.py makemigrations
+7. 테이블 적용
+python manage.py migrate
+#테이블 생성 확인
+윈도우+r -cmd - d: - cd sqlite - sqlite3 d:\study\pj6\config1\db.sqlite3
+.tables                   (select * from tab;)
+.schema polls_question
+.schema polls_choice
+8. 템플릿 파일 작성(polls/templates/polls/index.html)
+   http://127.0.0.1:8000/polls/        -->index.html
+9. views.py 작성
+   config1\urls.py
+   polls\urls.py
+10. http://127.0.0.1:8000/polls/
+8-1  polls/templates/polls/dbtest.html
+9-1  views.py 작성
+     polls\urls.py
+10-1 http://127.0.0.1:8000/polls/dbtest/
+---데이터베이스 연동views.dbtest--------------
+#과제
+1)member 앱을 생성
+2)member테이블 생성
+username varchar(50)
+pw varchar(50)
+email varchar(50)
+hp varchar(50)
+regdate datetime
+--member앱의 모델 변경사항 코드 작성
+python manage.py makemigrations member
+--member앱의 모델 변경사항 데이터베이스에 적용
+python manage.py migrate member
+참고)
+--프로젝트 config1 의 모든  앱의 모델 변경사항 코드 작성
+python manage.py makemigrations
+--프로젝트 config1 의 모든  앱의  변경사항 데이터베이스에 적용
+python manage.py migrate
+
+3).schema member_member 의 실행결과를 캡쳐해서 주세요
+윈도우+r -cmd - d: - cd sqlite - sqlite3 d:\study\pj6\config1\db.sqlite3
+.tables
+if)테이블 삭제시
+---서버가동----------------------
+python manage.py runserver
+--관리자 페이지 접속
+http://127.0.0.1:8000/admin
+접속시 아이디와 비번 필요(-->관리자 생성)
+python manage.py createsuperuser
+관리자페이지재접속
+python manage.py runserver
+http://127.0.0.1:8000/admin
+--관리자페이지에 테이블 연결(admin.py)
+#테이블 생성 확인
+윈도우+r -cmd - d: - cd sqlite - sqlite3 d:\study\pj6\config1\db.sqlite3
+.tables                   (select * from tab;)
+.schema polls_question
+.schema polls_choice
+---static 파일관리 :css,js코드 등------------------------
+settings.py--
+STATIC_URL = '/static/'
+STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
+---설문관리
+http://127.0.0.1:8000/polls/2   --->polls/detail.html
+
+#bank.csv를 읽어 년도별 파산한 은행수를 선그래프로 스타일을 적용하여 이쁘게 작성하세요
+#------------------
+
+--pip install mysqlclient
+2) 프로젝트  생성
+django-admin startproject config2
+
+3) 앱생성
+cd config2
+python manage.py startapp books
+--templates 폴더 생성
+--setting.py 
+app 추가, db 연결
+-- 기본 테이블 생성
+python manage.py migrate
+--models.py
+
+python manage.py makemigrations books
+python manage.py migrate books
+
+--관리자 생성
+python manage.py createsuperuser
+
+python manage.py runserver
+
+--admin.py
+
+--뷰의 종류(FBV:Function-Based View, CBV:Class-Based View)
+클래스형 뷰 : 웹개발시 공통으로 사용할 수 있는 로직을 미리 개발해 놓고 제공하는 뷰
+함수형 뷰 : 사용자가 모든 기능을 정의한 후 해당내용을 웹페이지에 표현
+
+--config2/urls.py
+--books/urls.py
+--views.py
+
+ListView 속성 object_list
+DetailView 속성 object
+
+TemplateView : 특별한 로직없이 템플릿 파일만 렌더링
+CreateView
+DeleteView
+UpdateView
